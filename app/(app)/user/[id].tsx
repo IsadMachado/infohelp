@@ -64,6 +64,9 @@ const Perfil = () => {
         <Text style={{ fontSize: 20, fontWeight: "bold", marginTop: 16 }}>
           {data?.nome}
         </Text>
+        <Text style={{ fontSize: 16, marginTop: 16 }}>
+          {data?.bio ?? "Nenhuma bio"}
+        </Text>
         <Text style={{ fontSize: 14, marginTop: 16 }}>Técnico verificado</Text>
       </View>
       <TouchableOpacity

@@ -13,6 +13,7 @@ const Navbar = () => {
         justifyContent: "space-between",
         paddingHorizontal: 16,
         backgroundColor: "#fff",
+        borderRadius: 8,
       }}
     >
       <Image

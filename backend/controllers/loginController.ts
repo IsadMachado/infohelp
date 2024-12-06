@@ -22,8 +22,6 @@ export async function loginUsuario(req: Request, res: Response) {
     // Normaliza o email: remove espaços e converte para minúsculas
     const emailNormalizado = email.trim().toLowerCase();
 
-    console.log(`Tentativa de login para o email: ${emailNormalizado}`);
-
     const usuario = await prisma.usuario.findUnique({
       where: { email: emailNormalizado },
     });
@@ -49,11 +47,8 @@ export async function loginUsuario(req: Request, res: Response) {
         usuario_logado_id: usuario.id,
         usuario_logado_tecnico: usuario.tecnico,
       },
-      process.env.JWT_KEY as string,
-      { expiresIn: "1h" } // Define a expiração do token
+      process.env.JWT_KEY as string
     );
-
-    console.log("Token JWT gerado com sucesso.");
 
     res.status(200).json({
       msg: "Logado com sucesso.",

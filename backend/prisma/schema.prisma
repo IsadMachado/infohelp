@@ -26,6 +26,7 @@ model Usuario {
   tecnico        Boolean         @default(false)
   idade          Int             @default(0)
   avatar         String?
+  bio            String?
   createdAt      DateTime        @default(now())
   updatedAt      DateTime        @updatedAt
   relacionamento Relacionamento? @default(SOLTEIRO)

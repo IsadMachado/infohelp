@@ -24,6 +24,7 @@ export interface Usuario {
   zap: string;
   tecnico: boolean;
   idade: number;
+  bio: string;
   relacionamento: Relacionamento;
   createdAt: Date;
   updatedAt: Date;

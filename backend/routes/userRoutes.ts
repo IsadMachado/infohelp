@@ -8,7 +8,15 @@ dotenv.config();
 
 // Criar um novo usuário
 router.post("/usuario", async (req: Request, res: any) => {
-  let { nome, email, senha, tecnico = false, idade, zap } = req.body;
+  let {
+    nome,
+    email,
+    senha,
+    tecnico = false,
+    idade,
+    zap,
+    relacionamento,
+  } = req.body;
 
   // Normaliza o email: remove espaços e converte para minúsculas
   email = email.trim().toLowerCase();
@@ -44,6 +52,7 @@ router.post("/usuario", async (req: Request, res: any) => {
         tecnico,
         idade: idadeNumero,
         zap,
+        relacionamento,
       },
     });
 
@@ -143,6 +152,22 @@ router.get("/tecnicos/:id", async (req: Request, res: any) => {
     res.json(usuarios);
   } catch (error) {
     res.status(500).json({ error: "Erro ao buscar usuários.", details: error });
+  }
+});
+
+router.put("/bio/:id", async (req: Request, res: any) => {
+  const { id } = req.params;
+  const { bio } = req.body;
+
+  try {
+    const usuarioAtualizado = await prisma.usuario.update({
+      where: { id: parseInt(id, 10) },
+      data: { bio },
+    });
+
+    res.json(usuarioAtualizado);
+  } catch (error) {
+    res.status(400).json({ error: "Erro ao atualizar bio.", details: error });
   }
 });
 

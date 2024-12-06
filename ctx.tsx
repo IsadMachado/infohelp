@@ -43,12 +43,19 @@ export function SessionProvider({ children }: PropsWithChildren) {
 
   const [initialLoading, setInitialLoading] = useState(true);
 
+  async function getUser(id: number) {
+    const res = await api.get("/usuario/" + id);
+    SecureStore.setItemAsync("usuario", JSON.stringify(res.data));
+    return res.data;
+  }
+
   async function login(data: LoginType) {
     const res = await api.post("/login", {
       email: data.email,
       senha: data.password,
     });
     const token = res.data.token;
+    await getUser(res.data.id);
     await SecureStore.setItemAsync("token", token);
     signIn(token);
     return res;
