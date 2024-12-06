@@ -15,8 +15,7 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/info.png",
         "backgroundColor": "#ffffff"
-      },
-      "package": "com.vmoraes424.infohelp"
+      }
     },
     "plugins": [
       "expo-router",
